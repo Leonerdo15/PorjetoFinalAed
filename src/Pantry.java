@@ -51,7 +51,7 @@ public class Pantry {
 //            bw.write("Barcode, Name, Kj, Size, Quantity");
 //            bw.newLine();
             for (Product product : products) {
-                bw.write(product.getBarcode() + ";" + product.getName() + ";" + product.getKcal() + ";" + product.getSize() + ";" + product.getQuantity());
+                bw.write(product.getBarcode() + ";" + product.getName() + ";" + product.getSize() + ";" + product.getKcal() + ";" + product.getQuantity());
                 bw.newLine();
             }
             bw.close();
@@ -71,7 +71,7 @@ public class Pantry {
             {
                 String[] product = line.split(splitBy);
                 System.out.println(Arrays.toString(product));
-                products.add(new Product(product[0], product[1], product[2], Double.parseDouble(product[3]),Integer.parseInt(product[4])));
+                products.add(new Product(product[0], product[1], product[2], Double.parseDouble(product[3])*4.184,Integer.parseInt(product[4])));
             }
         }
         catch(IOException e) {
