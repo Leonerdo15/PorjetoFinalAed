@@ -41,6 +41,33 @@ public class Pantry {
         products.add(product);
     }
 
+    public void removeProduct(String barcode){
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getBarcode().equals(barcode)) {
+                products.remove(products.get(i));
+                System.out.println("Product deleted");
+            }
+        }
+    }
+
+    public List<Product> searchByKcal(String signal, double calories){
+        List<Product> store = new ArrayList<>();
+
+        for (int i = 0; i < products.size(); i++) {
+            if (signal.equals("+")) {
+                if (products.get(i).getKcal() > calories) {
+                    store.add(products.get(i));
+                }
+            } else if (signal.equals("-")) {
+                if (products.get(i).getKcal() < calories) {
+                    store.add(products.get(i));
+                }
+            }else {
+                System.out.println("Signal invalid, try ´+´ or ´-´");
+            }
+        }
+        return store;
+    }
     public void saveListAsCsv(String path){
 
         try {

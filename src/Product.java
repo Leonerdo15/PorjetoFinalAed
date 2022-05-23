@@ -22,8 +22,6 @@ public class Product {
         JSONObject product = getProduct(barcode);
         String store = String.valueOf(product.getJSONArray("items").getJSONObject(0).getJSONArray("nutrients").getJSONObject(0).get("per_100g"));
 
-
-
         this.barcode = barcode;
         this.name = product.getJSONArray("items").getJSONObject(0).getString("name");
         this.size = String.valueOf(product.getJSONArray("items").getJSONObject(0).getJSONObject("package").get("quantity"));
@@ -106,6 +104,6 @@ public class Product {
                 ", size='" + size + '\'' +
                 ", Kcal='" + Kcal + '\'' +
                 ", quantity=" + quantity +
-                '}';
+                "}\n";
     }
 }
