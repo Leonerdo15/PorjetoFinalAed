@@ -53,30 +53,28 @@ public class Pantry {
     public List<Product> searchByKcal(String signal, double calories){
         List<Product> store = new ArrayList<>();
 
-        for (int i = 0; i < products.size(); i++) {
+        for (Product product : products) {
             if (signal.equals("+")) {
-                if (products.get(i).getKcal() > calories) {
-                    store.add(products.get(i));
+                if (product.getKcal() > calories) {
+                    store.add(product);
                 }
             } else if (signal.equals("-")) {
-                if (products.get(i).getKcal() < calories) {
-                    store.add(products.get(i));
+                if (product.getKcal() < calories) {
+                    store.add(product);
                 }
-            }else {
+            } else {
                 System.out.println("Signal invalid, try ´+´ or ´-´");
             }
         }
         return store;
     }
-    public void saveListAsCsv(String path){
 
+    public void saveListAsCsv(String path){
         try {
             File file = new File(path);
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
 
-//            bw.write("Barcode, Name, Kj, Size, Quantity");
-//            bw.newLine();
             for (Product product : products) {
                 bw.write(product.getBarcode() + ";" + product.getName() + ";" + product.getSize() + ";" + product.getKcal() + ";" + product.getQuantity());
                 bw.newLine();
@@ -86,7 +84,6 @@ public class Pantry {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void receiveCsv(String path){
@@ -94,8 +91,7 @@ public class Pantry {
         String splitBy = ";";
         try {
             BufferedReader br = new BufferedReader(new FileReader("test.csv"));
-            while ((line = br.readLine()) != null)
-            {
+            while ((line = br.readLine()) != null) {
                 String[] product = line.split(splitBy);
                 System.out.println(Arrays.toString(product));
                 products.add(new Product(product[0], product[1], product[2], Double.parseDouble(product[3])*4.184,Integer.parseInt(product[4])));

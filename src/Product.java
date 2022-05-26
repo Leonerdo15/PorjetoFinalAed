@@ -9,7 +9,6 @@ public class Product {
     private double Kcal;
     private int quantity;
 
-
     public Product(String barcode, String name, String size, double Kcal, int quantity) {
         this.barcode = barcode;
         this.name = name;
@@ -75,14 +74,12 @@ public class Product {
     }
 
     public void removeQuantity(int quantity){
-
         int quant = this.quantity -= quantity;
 
         if (quant < 0) {
             this.quantity += quantity;
             System.out.println("Too much to remove you just have: " + this.quantity);
         }
-
     }
 
     private JSONObject getProduct(String barcode){
